@@ -1,7 +1,23 @@
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import CustomerListPage from './pages/CustomerListPage';
+import CustomerDetailPage from './pages/CustomerDetailPage';
+import CustomerFormPage from './pages/CustomerFormPage';
 
-const API = axios.create({
-  baseURL: 'http://localhost:5000/api'
-});
+function App() {
+  return (
+    <Router>
+      <nav>
+        <Link to="/">Customers</Link> | <Link to="/add">Add Customer</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<CustomerListPage />} />
+        <Route path="/customers/:id" element={<CustomerDetailPage />} />
+        <Route path="/add" element={<CustomerFormPage />} />
+      </Routes>
+    </Router>
+  );
+}
 
-export default API;
+export default App;
+
